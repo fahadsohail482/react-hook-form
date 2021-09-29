@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { useForm, FormProvider, useFormContext } from 'react-hook-form';
+import React from "react";
+import ReactDOM from "react-dom";
+import { useForm, FormProvider, useFormContext } from "react-hook-form";
 
 export default function App() {
   const methods = useForm();
@@ -9,7 +9,7 @@ export default function App() {
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit((data) => console.log(data))}>
         <label>Test</label>
-        <input name="test" ref={register({ required: true })} />
+        <input {...register("test", { required: true })} />
         <label>Nested Input</label>
         <Test />
         <input type="submit" />
@@ -20,5 +20,5 @@ export default function App() {
 
 function Test() {
   const data = useFormContext();
-  return <input name="bill" ref={data.register} />;
+  return <input {...data.register("bill")} />;
 }
